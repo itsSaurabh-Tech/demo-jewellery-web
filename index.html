@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>AARANYA - Indian Heritage Jewellery</title>
+    <style>
+        /* CSS Variables for Dynamic Theming */
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-burgundy: #800020;
+            --cream: #FFF5E6;
+            --rich-brown: #5D3A1A;
+            --soft-pink: #FFD1DC;
+            --emerald: #046307;
+            --saffron: #FF9933;
+            --ruby-red: #E0115F;
+            --sapphire-blue: #0F52BA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #fff9f0 0%, #fff 100%);
+            min-height: 100vh;
+            color: #2C1810;
+        }
+
+        /* Header/Nav */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(128, 0, 32, 0.1);
+            border-bottom: 2px solid var(--primary-gold);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--deep-burgundy), var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            font-size: 1rem;
+            display: block;
+            background: var(--primary-gold);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            -webkit-text-fill-color: white;
+            text-align: center;
+        }
+
+        .menu-icon {
+            font-size: 2rem;
+            color: var(--deep-burgundy);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 1rem;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1601121141461-1d0fdfc7b4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 40px;
+            margin: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero h1 i {
+            color: var(--primary-gold);
+            font-style: italic;
+            display: block;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 2rem;
+            background: rgba(128, 0, 32, 0.8);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            border: 1px solid var(--primary-gold);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--deep-burgundy), #A52A2A);
+            color: white;
+            box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-gold);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: var(--deep-burgundy);
+        }
+
+        /* Cards Grid */
+        .section-title {
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+            font-size: 2.2rem;
+            color: var(--deep-burgundy);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-gold), var(--deep-burgundy));
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        .cards-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 2rem 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .cards-container::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .cards-container::-webkit-scrollbar-thumb {
+            background: var(--primary-gold);
+            border-radius: 2px;
+        }
+
+        .card {
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 30px 30px 20px 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            scroll-snap-align: start;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card-image {
+            height: 320px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-gold);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--deep-burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-gold);
+            margin: 0.5rem 0;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--cream);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--rich-brown);
+        }
+
+        /* Model Showcase */
+        .model-showcase {
+            background: linear-gradient(135deg, #2C1810 0%, #5D3A1A 100%);
+            padding: 3rem 1rem;
+            margin: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-showcase::before {
+            content: '✨ GRACIOUS MODELS ✨';
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: var(--primary-gold);
+            color: white;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .model-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid var(--primary-gold);
+            transition: transform 0.3s ease;
+        }
+
+        .model-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .model-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .model-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: white;
+            padding: 1.5rem 1rem 1rem;
+        }
+
+        .model-overlay h3 {
+            color: var(--primary-gold);
+            margin-bottom: 0.3rem;
+        }
+
+        /* Dynamic Collections */
+        .dynamic-collection {
+            padding: 2rem 1rem;
+        }
+
+        .collection-tabs {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 0.8rem 2rem;
+            border: 1px solid var(--primary-gold);
+            border-radius: 30px;
+            background: transparent;
+            color: var(--deep-burgundy);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: var(--primary-gold);
+            color: white;
+        }
+
+        /* Testimonial Section */
+        .testimonials {
+            background: linear-gradient(135deg, var(--cream) 0%, #fff 100%);
+            padding: 3rem 1rem;
+            margin: 2rem 0;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(128, 0, 32, 0.1);
+            border: 1px solid var(--primary-gold);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--primary-gold);
+            opacity: 0.3;
+            font-family: serif;
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Instagram Gallery */
+        .instagram-gallery {
+            padding: 2rem 1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item::after {
+            content: '⏺';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            color: white;
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 2rem 1rem;
+            background: var(--deep-burgundy);
+            margin: 2rem 0;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .video-thumb {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--deep-burgundy);
+            color: white;
+            padding: 3rem 1rem 1rem;
+            margin-top: 3rem;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer h4 {
+            color: var(--primary-gold);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 0.8rem 0;
+            opacity: 0.9;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            opacity: 1;
+            color: var(--primary-gold);
+        }
+
+        .creator-credit {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            font-size: 1rem;
+            color: var(--primary-gold);
+        }
+
+        .creator-credit span {
+            color: white;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: rgba(212, 175, 55, 0.2);
+            padding: 0.2rem 1rem;
+            border-radius: 20px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 i {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .cards-container {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                AARANYA
+                <span>Indian Heritage Jewels</span>
+            </div>
+            <div class="menu-icon">☼</div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>
+                    पारम्परिक की आधुनिक अभिव्यक्ति
+                    <i>Timeless Elegance, Modern Soul</i>
+                </h1>
+                <p>✨ Exquisite Handcrafted Jewellery | Since 1975 ✨</p>
+                <div>
+                    <button class="btn btn-primary" onclick="showDynamicContent()">Explore Collection</button>
+                    <button class="btn btn-secondary">Book Appointment</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Categories -->
+        <h2 class="section-title">Shop by Category</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Necklaces</div>
+                </div>
+                <div class="card-content">
+                    <h3>Gold Necklaces</h3>
+                    <p>Starting ₹ 50,000</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1632214009795-0f7d652a3288?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Earrings</div>
+                </div>
+                <div class="card-content">
+                    <h3>Jhumkas & Earrings</h3>
+                    <p>Starting ₹ 15,000</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Rings</div>
+                </div>
+                <div class="card-content">
+                    <h3>Diamond Rings</h3>
+                    <p>Starting ₹ 80,000</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1620656770147-0dd8c0a71f22?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Bangles</div>
+                </div>
+                <div class="card-content">
+                    <h3>Gold Bangles</h3>
+                    <p>Starting ₹ 1,20,000</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1611590027211-b954fd027b51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Mangalsutra</div>
+                </div>
+                <div class="card-content">
+                    <h3>Traditional Mangalsutra</h3>
+                    <p>Starting ₹ 35,000</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Best Seller Collection -->
+        <h2 class="section-title">Best Seller Collection</h2>
+        <div class="cards-container" id="jewelleryGrid">
+            <!-- Card 1 - Gold Necklace -->
+            <div class="card floating">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1601121141461-1d0fdfc7b4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Best Seller</div>
+                </div>
+                <div class="card-content">
+                    <h3>Vedic Gold Collection</h3>
+                    <div class="price">₹ 4,99,999</div>
+                    <div class="card-tags">
+                        <span class="tag">22K Gold</span>
+                        <span class="tag">Polki</span>
+                        <span class="tag">Kundan</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 - Emerald Set -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Premium</div>
+                </div>
+                <div class="card-content">
+                    <h3>Panna翡翠 Collection</h3>
+                    <div class="price">₹ 7,50,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Emerald</span>
+                        <span class="tag">Gold</span>
+                        <span class="tag">South Indian</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 - Bridal Set -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1611652022419-c941d4f446e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Bridal</div>
+                </div>
+                <div class="card-content">
+                    <h3>Rajwada Haath</h3>
+                    <div class="price">₹ 12,25,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Uncut Diamond</span>
+                        <span class="tag">Meenakari</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 - Nose Pin Set -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1632214009795-0f7d652a3288?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Traditional</div>
+                </div>
+                <div class="card-content">
+                    <h3>Nathani Collection</h3>
+                    <div class="price">₹ 85,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Gold</span>
+                        <span class="tag">Pearl</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 - Diamond Set -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Luxury</div>
+                </div>
+                <div class="card-content">
+                    <h3>Heera Peacock Set</h3>
+                    <div class="price">₹ 15,75,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Diamond</span>
+                        <span class="tag">Platinum</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 - Ruby Set -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1622630998477-20aa69645aef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Limited</div>
+                </div>
+                <div class="card-content">
+                    <h3>Manak Ruby Set</h3>
+                    <div class="price">₹ 8,95,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Ruby</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 - Temple Jewellery -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1611117775346-9d4fee468a82?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Temple</div>
+                </div>
+                <div class="card-content">
+                    <h3>South Indian Temple Set</h3>
+                    <div class="price">₹ 6,50,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Gold</span>
+                        <span class="tag">Temple</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 - Pearl Set -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1611590027211-b954fd027b51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Pearl</div>
+                </div>
+                <div class="card-content">
+                    <h3>Moti Haar Collection</h3>
+                    <div class="price">₹ 3,25,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Pearl</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Showcase -->
+        <section class="model-showcase">
+            <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 2rem;">✨ Our Beautiful Models Wearing AARANYA ✨</h2>
+            <div class="model-grid">
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1615460549969-36fa19521d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Priya Sharma</h3>
+                            <p>Wearing Vedic Gold Set</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Ananya Singh</h3>
+                            <p>Wearing Rajwada Set</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1623600989906-6aae5aa131d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Kavya Reddy</h3>
+                            <p>Wearing Temple Set</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Riya Patel</h3>
+                            <p>Wearing Panna Set</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1614204424926-196a80bf0be8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Aishwarya Nair</h3>
+                            <p>Wearing Diamond Set</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1615460549969-36fa19521d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Deepika Krishnan</h3>
+                            <p>Wearing Ruby Set</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Shreya Gupta</h3>
+                            <p>Wearing Moti Set</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="model-card">
+                    <div class="model-image" style="background-image: url('https://images.unsplash.com/photo-1623600989906-6aae5aa131d4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="model-overlay">
+                            <h3>Neha Kapoor</h3>
+                            <p>Wearing Temple Set</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section (New) -->
+        <section class="video-section">
+            <h2 style="color: white; text-align: center; margin-bottom: 2rem; font-size: 2rem;">📹 Watch Our Collection Videos</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumb" style="background-image: url('https://images.unsplash.com/photo-1601121141461-1d0fdfc7b4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <h3 style="color: var(--deep-burgundy);">Vedic Gold Collection</h3>
+                        <p>2:34 mins</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumb" style="background-image: url('https://images.unsplash.com/photo-1611652022419-c941d4f446e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <h3 style="color: var(--deep-burgundy);">Bridal Collection</h3>
+                        <p>3:45 mins</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumb" style="background-image: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                        <div class="play-btn">▶</div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <h3 style="color: var(--deep-burgundy);">Diamond Collection</h3>
+                        <p>2:15 mins</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <h2 class="section-title">What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1494790108777-766fd5f2977f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Customer" class="testimonial-img">
+                    <h3 style="color: var(--deep-burgundy);">Priya Sharma</h3>
+                    <p style="color: var(--primary-gold); margin-bottom: 0.5rem;">Mumbai</p>
+                    <p>"AARANYA ka jewellery bahut hi khoobsurat hai. Wedding ke liye liya tha, sab ne tarif ki! Quality aur design dono superb hai."</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Customer" class="testimonial-img">
+                    <h3 style="color: var(--deep-burgundy);">Rahul Verma</h3>
+                    <p style="color: var(--primary-gold); margin-bottom: 0.5rem;">Delhi</p>
+                    <p>"Amazing quality! The Vedic Gold collection is stunning. My wife loved the anniversary gift. Highly recommended!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Customer" class="testimonial-img">
+                    <h3 style="color: var(--deep-burgundy);">Anjali Mehta</h3>
+                    <p style="color: var(--primary-gold); margin-bottom: 0.5rem;">Jaipur</p>
+                    <p>"Traditional designs with modern touch - best combination! Panna翡翠 set is my favorite. Thank you AARANYA!"</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Customer" class="testimonial-img">
+                    <h3 style="color: var(--deep-burgundy);">Sneha Reddy</h3>
+                    <p style="color: var(--primary-gold); margin-bottom: 0.5rem;">Hyderabad</p>
+                    <p>"South Indian temple jewellery is just like my grandmother's. Pure gold and perfect craftsmanship. Very happy!"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Collection Tabs -->
+        <section class="dynamic-collection">
+            <h2 class="section-title">Collections by Region</h2>
+            <div class="collection-tabs">
+                <button class="tab active" onclick="filterCollection('north', this)">North Indian</button>
+                <button class="tab" onclick="filterCollection('south', this)">South Indian</button>
+                <button class="tab" onclick="filterCollection('east', this)">East Indian</button>
+                <button class="tab" onclick="filterCollection('west', this)">West Indian</button>
+                <button class="tab" onclick="filterCollection('central', this)">Central Indian</button>
+            </div>
+            <div id="dynamicContent" style="text-align: center; padding: 2rem; background: var(--cream); border-radius: 30px; margin: 0 1rem;">
+                <h3 style="color: var(--deep-burgundy);">✨ North Indian Collection ✨</h3>
+                <p id="collectionDisplay" style="font-size: 1.2rem; margin-top: 1rem;">North Indian collection featuring Kundan, Polki, and Meenakari work from Jaipur & Delhi</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                    <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" style="width: 100px; height: 100px; border-radius: 20px; object-fit: cover; border: 2px solid var(--primary-gold);">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" style="width: 100px; height: 100px; border-radius: 20px; object-fit: cover; border: 2px solid var(--primary-gold);">
+                    <img src="https://images.unsplash.com/photo-1611652022419-c941d4f446e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" style="width: 100px; height: 100px; border-radius: 20px; object-fit: cover; border: 2px solid var(--primary-gold);">
+                    <img src="https://images.unsplash.com/photo-1611117775346-9d4fee468a82?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" style="width: 100px; height: 100px; border-radius: 20px; object-fit: cover; border: 2px solid var(--primary-gold);">
+                </div>
+            </div>
+        </section>
+
+        <!-- Instagram Gallery -->
+        <section class="instagram-gallery">
+            <h2 class="section-title">Follow Us on Instagram @aaranya_jewels</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1601121141461-1d0fdfc7b4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1611652022419-c941d4f446e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1632214009795-0f7d652a3288?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1622630998477-20aa69645aef?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1611590027211-b954fd027b51?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+                <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1611117775346-9d4fee468a82?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80');"></div>
+            </div>
+        </section>
+
+        <!-- New Arrivals Section -->
+        <h2 class="section-title">New Arrivals ✨</h2>
+        <div class="cards-container">
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1620656770147-0dd8c0a71f22?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">New</div>
+                </div>
+                <div class="card-content">
+                    <h3>Emerald Choker</h3>
+                    <div class="price">₹ 2,85,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Emerald</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1622630998477-20aa69645aef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Limited</div>
+                </div>
+                <div class="card-content">
+                    <h3>Ruby Haathphool</h3>
+                    <div class="price">₹ 1,95,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Ruby</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1632214009795-0f7d652a3288?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Bestseller</div>
+                </div>
+                <div class="card-content">
+                    <h3>Sapphire Set</h3>
+                    <div class="price">₹ 5,45,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Sapphire</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Premium</div>
+                </div>
+                <div class="card-content">
+                    <h3>Polki Mangalsutra</h3>
+                    <div class="price">₹ 3,25,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Polki</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1601121141461-1d0fdfc7b4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">Exclusive</div>
+                </div>
+                <div class="card-content">
+                    <h3>Gold Temple Set</h3>
+                    <div class="price">₹ 6,75,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Temple</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1611590027211-b954fd027b51?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');">
+                    <div class="badge">New</div>
+                </div>
+                <div class="card-content">
+                    <h3>Pearl Choker</h3>
+                    <div class="price">₹ 1,85,000</div>
+                    <div class="card-tags">
+                        <span class="tag">Pearl</span>
+                        <span class="tag">Gold</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h4>AARANYA</h4>
+                <p>Indian Heritage Jewellery Since 1975</p>
+                <p>📍 Mumbai | Delhi | Jaipur | Chennai</p>
+                <p>📞 +91 98765 43210</p>
+                <p>✉️ hello@aaranya.in</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li>About Us</li>
+                    <li>Collections</li>
+                    <li>Store Locator</li>
+                    <li>Track Order</li>
+                    <li>Shipping Policy</li>
+                    <li>Return Policy</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li>Instagram</li>
+                    <li>Facebook</li>
+                    <li>YouTube</li>
+                    <li>Pinterest</li>
+                    <li>Twitter</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Newsletter</h4>
+                <p>Get latest designs & offers</p>
+                <input type="email" placeholder="Enter your email" style="padding: 0.8rem; border-radius: 30px; border: none; width: 100%; margin-top: 1rem; margin-bottom: 1rem;">
+                <button class="btn btn-primary" style="padding: 0.8rem;">Subscribe</button>
+            </div>
+        </div>
+        <div class="creator-credit">
+            Website Created by <span>Saurabh Mourya</span> | © 2026 AARANYA. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Dynamic JavaScript for Interactive Elements
+        function showDynamicContent() {
+            alert('✨ AARANYA welcomes you! Explore our exquisite collection of Indian jewellery with 5000+ designs! ✨');
+        }
+
+        function filterCollection(region, element) {
+            const tabs = document.querySelectorAll('.tab');
+            const dynamicDiv = document.getElementById('dynamicContent');
+            
+            // Update active tab
+            tabs.forEach(tab => tab.classList.remove('active'));
+            element.classList.add('active');
+            
+            // Dynamic content based on region
+            const collections = {
+                north: {
+                    title: 'North Indian Collection',
+                    text: 'North Indian collection featuring Kundan, Polki, and Meenakari work from Jaipur & Delhi. Known for its intricate craftsmanship and royal designs.',
+                    images: [
+                        'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1611652022419-c941d4f446e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1611117775346-9d4fee468a82?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
+                    ]
+                },
+                south: {
+                    title: 'South Indian Collection',
+                    text: 'South Indian collection with Temple jewellery, Kasu Mala, and Vanki from Tamil Nadu & Kerala. Heavy gold work with divine inspirations.',
+                    images: [
+                        'https://images.unsplash.com/photo-1620656770147-0dd8c0a71f22?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1622630998477-20aa69645aef?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1601121141461-1d0fdfc7b4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1611117775346-9d4fee468a82?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
+                    ]
+                },
+                east: {
+                    title: 'East Indian Collection',
+                    text: 'East Indian collection featuring Dokra art, Filigree work from Odisha & Bengal. Delicate silver and gold work with tribal influences.',
+                    images: [
+                        'https://images.unsplash.com/photo-1632214009795-0f7d652a3288?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1617038220319-276d3cfab638?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1611590027211-b954fd027b51?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
+                    ]
+                },
+                west: {
+                    title: 'West Indian Collection',
+                    text: 'West Indian collection showcasing Maharashtrian Thushi, Kolhapuri saaj, and Gujarati jewellery. Vibrant and colorful designs.',
+                    images: [
+                        'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1611652022419-c941d4f446e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1620656770147-0dd8c0a71f22?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1622630998477-20aa69645aef?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
+                    ]
+                },
+                central: {
+                    title: 'Central Indian Collection',
+                    text: 'Central Indian collection featuring Gond tribal art, Bidri work from Madhya Pradesh. Unique fusion of tribal and royal aesthetics.',
+                    images: [
+                        'https://images.unsplash.com/photo-1617038220319-276d3cfab638?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1601121141461-1d0fdfc7b4e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1622630998477-20aa69645aef?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80',
+                        'https://images.unsplash.com/photo-1611117775346-9d4fee468a82?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80'
+                    ]
+                }
+            };
+            
+            // Generate images HTML
+            let imagesHtml = '<div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">';
+            collections[region].images.forEach(imgUrl => {
+                imagesHtml += `<img src="${imgUrl}" style="width: 100px; height: 100px; border-radius: 20px; object-fit: cover; border: 2px solid var(--primary-gold);">`;
+            });
+            imagesHtml += '</div>';
+            
+            // Update the dynamic content section
+            dynamicDiv.innerHTML = `
+                <h3 style="color: var(--deep-burgundy);">✨ ${collections[region].title} ✨</h3>
+                <p style="font-size: 1.2rem; margin-top: 1rem;">${collections[region].text}</p>
+                ${imagesHtml}
+            `;
+            
+            // Add animation
+            dynamicDiv.style.animation = 'fadeIn 0.5s ease';
+        }
+
+        // Add fade animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(128, 0, 32, 0.95)';
+                header.style.color = 'white';
+                document.querySelector('.menu-icon').style.color = 'white';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.color = '#2C1810';
+                document.querySelector('.menu-icon').style.color = 'var(--deep-burgundy)';
+            }
+        });
+
+        // Initialize
+        window.onload = function() {
+            console.log('✨ AARANYA website loaded - Created by Saurabh Mourya ✨');
+            console.log('Total Images: 50+ jewellery and model images');
+        };
+
+        // Video play buttons
+        document.querySelectorAll('.play-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Video player will open here - Demo version');
+            });
+        });
+    </script>
+</body>
+</html>
